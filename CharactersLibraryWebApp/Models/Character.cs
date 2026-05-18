@@ -10,10 +10,10 @@
         public DateTime? ReleaseDate { get; set; }
 
         public int WeaponTypeId { get; set; }
-        public WeaponType WeaponType { get; set; } = null!;
+        public WeaponType? WeaponType { get; set; }
 
         public int ElementId { get; set; }
-        public Element Element { get; set; } = null!;
+        public Element? Element { get; set; }
 
         public ICollection<Talent> Talents { get; set; } = new List<Talent>();
     }

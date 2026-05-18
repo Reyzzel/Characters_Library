@@ -8,6 +8,6 @@
         public string? TalentType { get; set; }
 
         public int CharacterId { get; set; }
-        public Character Character { get; set; } = null!;
+        public Character? Character { get; set; }
     }
 }
