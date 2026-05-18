@@ -46,7 +46,7 @@ namespace CharactersLibraryWebApp.Data
                     Rarity = 5,
                     WeaponTypeId = 5,
                     ElementId = 1,
-                    ReleaseDate = new DateTime(2021, 3, 2)
+                    ReleaseDate = new DateTime(2021, 3, 2, 0, 0, 0, DateTimeKind.Utc)
                 },
                 new Character
                 {
@@ -57,7 +57,7 @@ namespace CharactersLibraryWebApp.Data
                     Rarity = 5,
                     WeaponTypeId = 5,
                     ElementId = 4,
-                    ReleaseDate = new DateTime(2021, 9, 1)
+                    ReleaseDate = new DateTime(2021, 9, 1, 0, 0, 0, DateTimeKind.Utc)
                 }
             );
 

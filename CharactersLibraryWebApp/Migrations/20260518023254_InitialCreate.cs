@@ -125,8 +125,8 @@ namespace CharactersLibraryWebApp.Migrations
                 columns: new[] { "Id", "Description", "ElementId", "Name", "Rarity", "ReleaseDate", "Title", "WeaponTypeId" },
                 values: new object[,]
                 {
-                    { 1, "The 77th Director of the Wangsheng Funeral Parlor.", 1, "Hu Tao", 5, new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Director of the Wangsheng Funeral Parlor", 5 },
-                    { 2, "Her Excellency, the Almighty Narukami Ogosho.", 4, "Raiden Shogun", 5, new DateTime(2021, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Plane of Euthymia", 5 }
+                    { 1, "The 77th Director of the Wangsheng Funeral Parlor.", 1, "Hu Tao", 5, new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Utc), "Director of the Wangsheng Funeral Parlor", 5 },
+                    { 2, "Her Excellency, the Almighty Narukami Ogosho.", 4, "Raiden Shogun", 5, new DateTime(2021, 9, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Plane of Euthymia", 5 }
                 });
 
             migrationBuilder.CreateIndex(

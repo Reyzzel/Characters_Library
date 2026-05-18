@@ -68,7 +68,7 @@ namespace CharactersLibraryWebApp.Migrations
                             ElementId = 1,
                             Name = "Hu Tao",
                             Rarity = 5,
-                            ReleaseDate = new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReleaseDate = new DateTime(2021, 3, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             Title = "Director of the Wangsheng Funeral Parlor",
                             WeaponTypeId = 5
                         },
@@ -79,7 +79,7 @@ namespace CharactersLibraryWebApp.Migrations
                             ElementId = 4,
                             Name = "Raiden Shogun",
                             Rarity = 5,
-                            ReleaseDate = new DateTime(2021, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReleaseDate = new DateTime(2021, 9, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Title = "Plane of Euthymia",
                             WeaponTypeId = 5
                         });
