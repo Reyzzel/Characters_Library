@@ -13,13 +13,13 @@
     <div class="p-5">
       <!-- name and rarity -->
       <div class="flex items-start justify-between gap-2 mb-3">
-        <div>
+        <div class="min-w-0 flex-1">
           <h3 class="font-semibold text-stone-800 text-base truncate">{{ character.name }}</h3>
-          <p v-if="character.title" class="text-xs text-stone-500 italic truncate">
+          <p v-if="character.title" class="text-xs text-stone-500 italic line-clamp-2">
             {{ character.title }}
           </p>
         </div>
-        <RarityStars :rarity="character.rarity" size="sm" class="shrink-0" />
+        <RarityStars :rarity="character.rarity" size="sm" class="shrink-0 mt-1" />
       </div>
       
       <!-- element and weapon badge -->

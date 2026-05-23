@@ -42,17 +42,34 @@ export const useCharactersStore = defineStore('characters', () => {
     try {
       const [ch, el, wt] = await Promise.all([
         charactersApi.getAll(), elementsApi.getAll(), weaponTypesApi.getAll()])
-      characters.value = ch.data; elements.value = el.data; weaponTypes.value = wt.data
+      elements.value = el.data; weaponTypes.value = wt.data
+      
+      characters.value = ch.data.map((c: Character) => ({
+        ...c,
+        element: el.data.find((e: Element) => e.id === c.elementId),
+        weaponType: wt.data.find((w: WeaponType) => w.id === c.weaponTypeId)
+      }))
     } catch (e: unknown) { error.value = (e as Error).message
     } finally { loading.value = false }
   }
   async function createCharacter(data: unknown) {
-    const r = await charactersApi.create(data); characters.value.push(r.data); return r.data
+    const r = await charactersApi.create(data);
+    const newChar = r.data as Character;
+    newChar.element = elements.value.find(e => e.id === newChar.elementId);
+    newChar.weaponType = weaponTypes.value.find(w => w.id === newChar.weaponTypeId);
+    characters.value.push(newChar);
+    return newChar;
   }
   async function updateCharacter(id: number, data: unknown) {
     await charactersApi.update(id, data)
     const i = characters.value.findIndex(c => c.id === id)
-    if (i !== -1) characters.value[i] = { ...characters.value[i], ...(data as Partial<Character>) } as Character
+    if (i !== -1) {
+      const partial = data as Partial<Character>;
+      const merged = { ...characters.value[i], ...partial } as Character;
+      if (partial.elementId) merged.element = elements.value.find(e => e.id === merged.elementId) || merged.element;
+      if (partial.weaponTypeId) merged.weaponType = weaponTypes.value.find(w => w.id === merged.weaponTypeId) || merged.weaponType;
+      characters.value[i] = merged;
+    }
   }
   async function deleteCharacter(id: number) {
     await charactersApi.delete(id)
