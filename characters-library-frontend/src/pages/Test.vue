@@ -30,8 +30,8 @@
           <ElementBadge :element="{ name: 'Pyro', color: '#ef4444' }" :showName="false" />
         </div>
 
-      <!-- CharacterCard Test -->
-        <h2 class="text-xl font-semibold text-stone-800 mb-4 border-b border-stone-200 pb-2 mt-8">CharacterCard</h2>
+      <!-- CharacterCard Test with Modal and Dialog integration -->
+        <h2 class="text-xl font-semibold text-stone-800 mb-4 border-b border-stone-200 pb-2 mt-8">CharacterCard Integration Test</h2>
         
         <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100 grid grid-cols-1 sm:grid-cols-2 gap-6">
           <CharacterCard 
@@ -48,8 +48,8 @@
               talents: []
             }"
             @view="console.log('View character', $event)"
-            @edit="console.log('Edit character', $event)"
-            @delete="console.log('Delete character', $event)"
+            @edit="handleEdit"
+            @delete="handleDelete"
           />
           <CharacterCard 
             :character="{
@@ -65,16 +65,93 @@
               talents: []
             }"
             @view="console.log('View character', $event)"
-            @edit="console.log('Edit character', $event)"
-            @delete="console.log('Delete character', $event)"
+            @edit="handleEdit"
+            @delete="handleDelete"
           />
         </div>
+
+        <!-- Integrated Modal -->
+        <CharacterModal
+          :show="showModal"
+          :character="selectedCharacter"
+          :elements="mockElements"
+          :weaponTypes="mockWeaponTypes"
+          @close="closeModal"
+          @submit="handleSubmit"
+        />
+
+        <!-- Integrated Dialog -->
+        <ConfirmDialog
+          :show="showDialog"
+          title="Delete Character?"
+          :message="`Are you sure you want to delete ${characterToDelete?.name}? This action cannot be undone.`"
+          @cancel="closeDialog"
+          @confirm="confirmDelete"
+        />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import RarityStars from '@/components/RarityStars.vue'
 import ElementBadge from '@/components/ElementBadge.vue'
 import CharacterCard from '@/components/CharacterCard.vue'
+import CharacterModal from '@/components/CharacterModal.vue'
+import ConfirmDialog from '@/components/ConfirmDialog.vue'
+
+import type { Character } from '@/stores/characters'
+
+const showModal = ref(false)
+const showDialog = ref(false)
+const selectedCharacter = ref<Character | null>(null)
+const characterToDelete = ref<Character | null>(null)
+
+const handleEdit = (character: Character) => {
+  selectedCharacter.value = character
+  showModal.value = true
+}
+
+const handleDelete = (character: Character) => {
+  characterToDelete.value = character
+  showDialog.value = true
+}
+
+const closeModal = () => {
+  showModal.value = false
+  selectedCharacter.value = null
+}
+
+const handleSubmit = (payload: any) => {
+  console.log('Submit', payload)
+  closeModal()
+}
+
+const closeDialog = () => {
+  showDialog.value = false
+  characterToDelete.value = null
+}
+
+const confirmDelete = () => {
+  console.log('Confirmed delete', characterToDelete.value)
+  closeDialog()
+}
+
+const mockElements = [
+  { id: 1, name: 'Pyro', color: '#ef4444' },
+  { id: 2, name: 'Hydro', color: '#3b82f6' },
+  { id: 3, name: 'Anemo', color: '#10b981' },
+  { id: 4, name: 'Electro', color: '#8b5cf6' },
+  { id: 5, name: 'Dendro', color: '#84cc16' },
+  { id: 6, name: 'Cryo', color: '#06b6d4' },
+  { id: 7, name: 'Geo', color: '#eab308' }
+]
+
+const mockWeaponTypes = [
+  { id: 1, name: 'Sword' },
+  { id: 2, name: 'Claymore' },
+  { id: 3, name: 'Polearm' },
+  { id: 4, name: 'Catalyst' },
+  { id: 5, name: 'Bow' }
+]
 </script>

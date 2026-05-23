@@ -8,8 +8,8 @@
     >
       <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm border border-stone-200 p-6">
         <div class="flex items-start gap-4 mb-5">
-          <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-xl">
-            <i class="fa-solid fa-triangle-exclamation"></i>
+          <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-triangle-exclamation text-red-600"></i>
           </div>
           <div>
             <h3 class="font-semibold text-stone-800 mb-1">{{ title ?? 'Confirm' }}</h3>
