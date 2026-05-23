@@ -1,9 +1,10 @@
-import { reactive, computed } from 'vue'
+import { reactive, computed, ref } from 'vue'
 export interface CharacterForm {
   name: string; title: string; description: string; rarity: number
   releaseDate: string; weaponTypeId: number; elementId: number
 }
 export function useCharacterForm(initial?: Partial<CharacterForm> & { id?: number }) {
+  const currentId = ref(initial?.id ?? 0)
   const form = reactive<CharacterForm>({
     name: initial?.name ?? '', title: initial?.title ?? '',
     description: initial?.description ?? '', rarity: initial?.rarity ?? 4,
@@ -30,7 +31,8 @@ export function useCharacterForm(initial?: Partial<CharacterForm> & { id?: numbe
   const isValid = computed(() =>
     form.name.trim().length >= 2 && form.rarity >= 1 && form.rarity <= 5 &&
     form.weaponTypeId > 0 && form.elementId > 0)
-  function reset(d?: Partial<CharacterForm>) {
+  function reset(d?: Partial<CharacterForm> & { id?: number }) {
+    currentId.value = d?.id ?? 0
     form.name = d?.name ?? ''; form.title = d?.title ?? ''
     form.description = d?.description ?? ''; form.rarity = d?.rarity ?? 4
     form.releaseDate = d?.releaseDate ? (d.releaseDate.split('T')[0] ?? '') : ''
@@ -40,7 +42,7 @@ export function useCharacterForm(initial?: Partial<CharacterForm> & { id?: numbe
   }
   function toPayload() {
     return {
-      id: initial?.id ?? 0,
+      id: currentId.value,
       name: form.name.trim(),
       title: form.title.trim() || null,
       description: form.description.trim() || null,
