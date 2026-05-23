@@ -11,7 +11,7 @@
         : character.rarity === 4 ? 'bg-purple-400' : 'bg-blue-400'"
     />
     <!-- Character Image -->
-    <div v-if="character.imageUrl" class="w-full h-48 overflow-hidden bg-stone-100 relative">
+    <div v-if="character.imageUrl" class="w-full h-64 overflow-hidden bg-stone-100 relative">
       <img :src="character.imageUrl" :alt="character.name" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
     </div>
     <div class="p-5">

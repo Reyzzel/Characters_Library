@@ -11,7 +11,12 @@
                                    'bg-blue-50  border-blue-200  text-blue-800'
           "
         >
-          <span>{{ t.type === 'success' ? '<i class="fa-solid fa-square-check text-green-600"></i>' : t.type === 'error' ? '<i class="fa-solid fa-xmark text-red-600"></i>' : '<i class="fa-solid fa-info-circle text-blue-600"></i>' }}</span>
+          <i :class="[
+            'fa-solid',
+            t.type === 'success' ? 'fa-square-check text-green-600' : 
+            t.type === 'error' ? 'fa-xmark text-red-600' : 
+            'fa-info-circle text-blue-600'
+          ]"></i>
           <span class="flex-1">{{ t.message }}</span>
           <button class="opacity-60 hover:opacity-100" @click="remove(t.id)">✕</button>
         </div>

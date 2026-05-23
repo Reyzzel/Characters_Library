@@ -64,7 +64,7 @@
       <!-- Empty -->
       <div v-else-if="!store.loading && !store.filteredCharacters.length"
            class="text-center py-20">
-        <div class="text-6xl mb-4">📜</div>
+        <div class="text-6xl mb-4"><i class="fa-regular fa-face-frown"></i></div>
         <h3 class="text-xl font-semibold text-stone-800 mb-2">
           {{ store.hasFilters ? 'No matches' : 'Library is empty' }}
         </h3>
