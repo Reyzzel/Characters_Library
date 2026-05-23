@@ -1,11 +1,9 @@
-<script setup lang="ts"></script>
-
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <div class="min-h-screen bg-stone-50">
+    <nav class="bg-white border-b border-stone-200 px-6 py-3 flex items-center gap-4">
+      <span class="font-bold text-stone-800"><i class="fa-solid fa-book text-amber-600"></i> Characters Library</span>
+    </nav>
+  </div>
 </template>
 
-<style scoped></style>
+<script setup lang="ts"></script>
