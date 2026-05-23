@@ -34,6 +34,12 @@
             <textarea v-model="form.description" rows="3"
               class="w-full px-3 py-2 rounded-lg border border-stone-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-amber-300" />
           </div>
+          <!-- Image URL -->
+          <div>
+            <label class="block text-xs font-medium text-stone-600 mb-1">Image URL</label>
+            <input v-model="form.imageUrl" type="url" placeholder="https://example.com/image.png"
+              class="w-full px-3 py-2 rounded-lg border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300" />
+          </div>
           <!-- Rarity + Date -->
           <div class="grid grid-cols-2 gap-3">
             <div>

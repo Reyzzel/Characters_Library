@@ -10,6 +10,10 @@
         ? 'bg-gradient-to-r from-amber-400 to-yellow-300'
         : character.rarity === 4 ? 'bg-purple-400' : 'bg-blue-400'"
     />
+    <!-- Character Image -->
+    <div v-if="character.imageUrl" class="w-full h-48 overflow-hidden bg-stone-100 relative">
+      <img :src="character.imageUrl" :alt="character.name" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+    </div>
     <div class="p-5">
       <!-- name and rarity -->
       <div class="flex items-start justify-between gap-2 mb-3">

@@ -1,7 +1,7 @@
 import { reactive, computed, ref } from 'vue'
 export interface CharacterForm {
   name: string; title: string; description: string; rarity: number
-  releaseDate: string; weaponTypeId: number; elementId: number
+  releaseDate: string; imageUrl: string; weaponTypeId: number; elementId: number
 }
 export function useCharacterForm(initial?: Partial<CharacterForm> & { id?: number }) {
   const currentId = ref(initial?.id ?? 0)
@@ -9,6 +9,7 @@ export function useCharacterForm(initial?: Partial<CharacterForm> & { id?: numbe
     name: initial?.name ?? '', title: initial?.title ?? '',
     description: initial?.description ?? '', rarity: initial?.rarity ?? 4,
     releaseDate: initial?.releaseDate ? (initial.releaseDate.split('T')[0] ?? '') : '',
+    imageUrl: initial?.imageUrl ?? '',
     weaponTypeId: initial?.weaponTypeId ?? 0, elementId: initial?.elementId ?? 0,
   })
   const errors  = reactive<Record<string, string>>({})
@@ -36,6 +37,7 @@ export function useCharacterForm(initial?: Partial<CharacterForm> & { id?: numbe
     form.name = d?.name ?? ''; form.title = d?.title ?? ''
     form.description = d?.description ?? ''; form.rarity = d?.rarity ?? 4
     form.releaseDate = d?.releaseDate ? (d.releaseDate.split('T')[0] ?? '') : ''
+    form.imageUrl = d?.imageUrl ?? ''
     form.weaponTypeId = d?.weaponTypeId ?? 0; form.elementId = d?.elementId ?? 0
     Object.keys(errors).forEach(k => delete errors[k])
     Object.keys(touched).forEach(k => delete touched[k])
@@ -50,6 +52,7 @@ export function useCharacterForm(initial?: Partial<CharacterForm> & { id?: numbe
       weaponTypeId: Number(form.weaponTypeId),
       elementId: Number(form.elementId),
       releaseDate: form.releaseDate ? new Date(form.releaseDate).toISOString() : null,
+      imageUrl: form.imageUrl.trim() || null,
     }
   }
   return { form, errors, touched, touch, validate, isValid, reset, toPayload }

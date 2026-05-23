@@ -1,4 +1,4 @@
-﻿namespace CharactersLibraryWebApp.Models
+namespace CharactersLibraryWebApp.Models
 {
     public class Character
     {
@@ -8,6 +8,7 @@
         public string? Description { get; set; }
         public int Rarity { get; set; }
         public DateTime? ReleaseDate { get; set; }
+        public string? ImageUrl { get; set; }
 
         public int WeaponTypeId { get; set; }
         public WeaponType? WeaponType { get; set; }

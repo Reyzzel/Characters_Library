@@ -7,7 +7,7 @@ export interface WeaponType { id: number; name: string }
 export interface Talent     { id: number; name: string; description?: string; talentType?: string; characterId: number }
 export interface Character  {
   id: number; name: string; title?: string; description?: string; rarity: number
-  releaseDate?: string; weaponTypeId: number; weaponType?: WeaponType
+  releaseDate?: string; imageUrl?: string; weaponTypeId: number; weaponType?: WeaponType
   elementId: number; element?: Element; talents: Talent[]
 }
 
